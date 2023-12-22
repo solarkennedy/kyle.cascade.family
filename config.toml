@@ -1,6 +1,6 @@
 baseURL = 'https://kyle.cascade.family/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'kyle.cascade.family'
 theme = 'hugo-flex'
 publishDir = 'docs/'
 [permalinks]
