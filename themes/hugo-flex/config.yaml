@@ -1,0 +1,44 @@
+params:
+  color: '#7c238c'           # Any color in CSS syntax
+  width: 72rem          # Any length in CSS syntax
+  footer: ""
+  rss: To subscribe to this RSS feed, copy its address and paste it into your
+    favorite feed reader.
+  summaries: true      # Set to true to show summaries of posts on homepage
+  divider: '\2015\2015' # Set to false to remove divider below posts on homepage
+  schema: true         # Set to true to add Schema.org metadata
+  opengraph: true      # Set to true to add Open Graph metadata
+  twittercards: false   # Set to true to add Twitter Cards metadata
+  utterances:
+    repo:               # Set to Utterances repo URL to add Utterances comments
+    issueterm: pathname
+    theme: github-light
+  netlify:
+    honeypot: false     # Set to true to add honeypot field in contact form
+    recaptcha: false    # Set to true to add recaptcha challenge in contact form
+  # css:                # Uncomment to add custom CSS from a list of files
+  #   - css/foo.css
+  #   - bar.css
+  # js:                 # Uncomment to add custom JS from a list of files
+  #   - js/foo.js
+  #   - bar.js
+
+
+menu:
+  nav:
+  - name: About
+    url: /about/
+    weight: 1
+  - name: Posts
+    url: /post/
+    weight: 2
+  - name: Categories
+    url: /categories/
+    weight: 3
+  - name: Subscribe
+    url: /subscribe/
+    weight: 4
+# I don't understand flebox but somehow this gets the search bar on the right
+  - name: ""
+    url: /
+    weight: 5

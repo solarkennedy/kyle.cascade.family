@@ -1,0 +1,24 @@
+{{ define "main" }}
+
+<article>
+  {{ partial "heading.html" . }}
+  {{ .Content }}
+  {{ if .Page.Store.Get "hasMermaid" }}
+  <script src="/javascripts/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      theme: 'forest',
+      startOnLoad: true,
+      sequence:{
+        useMaxWidth: false,
+        height: 0
+      }
+    })
+  </script>
+{{ end }}
+
+  {{ partial "tags.html" . }}
+  {{ partial "comments.html" . }}
+</article>
+
+{{ end }}

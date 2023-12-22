@@ -1,0 +1,10 @@
+baseURL = 'https://kyle.cascade.family/'
+languageCode = 'en-us'
+title = 'My New Hugo Site'
+theme = 'hugo-flex'
+publishDir = 'docs/'
+[permalinks]
+  post = '/:slug/'
+relativeURLs = true
+pygmentsCodeFences = true
+
