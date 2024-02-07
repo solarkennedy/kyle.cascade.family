@@ -26,6 +26,7 @@ pluralizelisttitles = false
     github_url = "https://github.com/solarkennedy"
     linkedin_url = "https://www.linkedin.com/in/solarkennedy/"
     email_url = "mailto://kyle@cascade.family"
+    subscribe_url = "./subscribe"
 
     # Adds an RSS icon to the end of the socials which links to {{ .Site.BaseURL }}/index.xml
     rss_icon = true
