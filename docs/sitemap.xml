@@ -2,12 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://kyle.cascade.family/subscribe/</loc>
-    <priority>0</priority>
-  </url><url>
     <loc>https://kyle.cascade.family/</loc>
   </url><url>
     <loc>https://kyle.cascade.family/series/</loc>
+  </url><url>
+    <loc>https://kyle.cascade.family/subscribe/</loc>
   </url><url>
     <loc>https://kyle.cascade.family/tags/</loc>
   </url>

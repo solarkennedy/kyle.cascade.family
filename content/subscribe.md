@@ -1,3 +1,7 @@
+---
+title: "Subscribe"
+---
+
 You can subscribe to my blog in the following ways:
 
 * Good old [RSS](https://xkyle.com/index.xml)
