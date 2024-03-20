@@ -5,7 +5,19 @@
     <link>https://kyle.cascade.family/</link>
     <description>Recent content on kyle.cascade.family</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://kyle.cascade.family/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kyle.cascade.family/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>https://kyle.cascade.family/posts/hello-world/</link>
+      <pubDate>Thu, 21 Mar 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://kyle.cascade.family/posts/hello-world/</guid>
+      <description>This is the first post from the new blog!
+I&amp;rsquo;ll be archiving my old blog, xkyle.com and its &amp;hellip; 168 posts and starting fresh here.
+Feel free to subscribe via the method of your choice.</description>
+    </item>
+    
     <item>
       <title>Subscribe</title>
       <link>https://kyle.cascade.family/subscribe/</link>
