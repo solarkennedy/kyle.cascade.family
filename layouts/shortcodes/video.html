@@ -1,0 +1,4 @@
+<video controls {{ with .Get "width" }}width="{{ . }}"{{ end }} {{ with .Get "height" }}height="{{ . }}"{{ end }}>
+  <source src="{{ .Get "src" }}" type="{{ .Get "type" | default "video/mp4" }}">
+  Your browser does not support the video tag.
+</video>
