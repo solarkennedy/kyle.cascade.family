@@ -6,7 +6,18 @@
     <description>Recent content in Posts on kyle.cascade.family</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kyle.cascade.family/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kyle.cascade.family/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automating a Roomba with ESPHome</title>
+      <link>https://kyle.cascade.family/posts/automating-a-roomba-with-esphome/</link>
+      <pubDate>Thu, 10 Oct 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://kyle.cascade.family/posts/automating-a-roomba-with-esphome/</guid>
+      <description>When I first bought this wifi-connected Roomba, I knew that someday it might have to join the Internet of Shit.
+The iRobot corporation has a pretty good track record for supporting their products, but at some point those servers are going to come down, or the app will break, or the SSL certificates will expire, etc.
+These products need continuous support from their companies in order to operate, and products simply cannot be supported forever.</description>
+    </item>
+    
     <item>
       <title>Hello World</title>
       <link>https://kyle.cascade.family/posts/hello-world/</link>

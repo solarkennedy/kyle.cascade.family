@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.14549c76bbc96f0af1574b0259efd70e52908cd36fb4d14ed3d290a1b6479eae.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/images/favicon-32x32.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+
+<!-- Open Graph image and Twitter Card metadata -->
+
+<title itemprop="name">Kyle Cascade - Automating a Roomba with ESPHome</title>
+<meta property="og:title" content=Kyle&#32;Cascade&#32;-&#32;Automating&#32;a&#32;Roomba&#32;with&#32;ESPHome />
+<meta name="twitter:title" content=Kyle&#32;Cascade&#32;-&#32;Automating&#32;a&#32;Roomba&#32;with&#32;ESPHome />
+<meta itemprop="name" content=Kyle&#32;Cascade&#32;-&#32;Automating&#32;a&#32;Roomba&#32;with&#32;ESPHome />
+<meta name="application-name" content=Kyle&#32;Cascade&#32;-&#32;Automating&#32;a&#32;Roomba&#32;with&#32;ESPHome />
+<meta property="og:site_name" content="kyle.cascade.family" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://kyle.cascade.family/posts/automating-a-roomba-with-esphome/" />
+<link rel="canonical" href="https://kyle.cascade.family/posts/automating-a-roomba-with-esphome/" itemprop="url" />
+<meta name="url" content="https://kyle.cascade.family/posts/automating-a-roomba-with-esphome/" />
+<meta name="twitter:url" content="https://kyle.cascade.family/posts/automating-a-roomba-with-esphome/" />
+<meta property="og:url" content="https://kyle.cascade.family/posts/automating-a-roomba-with-esphome/" />
+
+
+<meta property="og:updated_time" content=10010-10-12T100:00:24Z />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://kyle.cascade.family/sitemap.xml' />
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="kyle.cascade.family" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+
+
+<meta property="og:type" content="article" />
+<meta property="article:publisher" content="" />
+<meta property="og:article:published_time" content=10010-10-12T100:00:24Z />
+<meta property="article:published_time" content=10010-10-12T100:00:24Z />
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.110.0">
+
+
+    
+    
+
+<link type="text/css" rel="stylesheet" href="/css/bundle.min.68ff1b4cb314f7ae0d338029a18b60bffd6628fe424f44181c1785b70ad8327b.css">
+
+
+    
+    <style>
+    body {
+        --sidebar-bg-color: #202020;
+        --sidebar-img-border-color: #515151;
+        --sidebar-p-color: #909090;
+        --sidebar-h1-color: #FFF;
+        --sidebar-a-color: #FFF;
+        --sidebar-socials-color: #FFF;
+        --text-color: #222;
+        --bkg-color: #FAF9F6;
+        --post-title-color: #303030;
+        --list-color: #5a5a5a;
+        --link-color: #268bd2;
+        --date-color: #515151;
+        --table-border-color: #E5E5E5;
+        --table-stripe-color: #F9F9F9;
+        --code-color: #000;
+        --code-background-color: #E5E5E5;
+        --code-block-color: #fff;
+        --code-block-background-color: #272822;
+        --moon-sun-color: #FFF;
+        --moon-sun-background-color: #515151;
+    }
+    body.dark-theme {
+        --text-color: #eee;
+        --bkg-color: #121212;
+        --post-title-color: #DBE2E9;
+        --list-color: #9d9d9d;
+        --link-color: #268bd2;
+        --date-color: #9a9a9a;
+        --table-border-color: #515151;
+        --table-stripe-color: #202020;
+        --code-color: #fff;
+        --code-background-color: #515151;
+        --code-block-color: #fff;
+        --code-block-background-color: #272822;
+    }
+    body {
+        background-color: var(--bkg-color);
+    }
+</style>
+
+</head>
+
+    <body class="dark-theme">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+            <a href="https://kyle.cascade.family/">
+                <img src="/images/KyleCascade.png" alt="brand image">
+            </a>
+        
+        
+            <a href="https://kyle.cascade.family/">
+                <h1>Kyle Cascade</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+
+        
+        
+        
+        
+            
+
+            
+                
+                
+            
+            
+                
+                
+            
+                
+                
+            
+        
+        
+            
+
+            
+                
+                
+            
+            
+                
+                
+            
+                
+                
+            
+        
+        
+            
+
+            
+                
+                
+                    <li class="heading">
+                        <a href="/posts/">Recent Posts</a>
+                    </li>
+                    
+                        <li class="sub-heading">
+                            
+                        </li>
+                        
+                            <li class="bullet">
+                                <a href="https://kyle.cascade.family/posts/automating-a-roomba-with-esphome/">Automating a Roomba with ESPHome</a>
+                            </li>
+                        
+                            <li class="bullet">
+                                <a href="https://kyle.cascade.family/posts/hello-world/">Hello World</a>
+                            </li>
+                        
+                    
+                
+            
+            
+                
+                
+            
+                
+                
+            
+        
+        
+            
+
+            
+                
+                
+                    <li class="heading">
+                        <a href="/posts/">All Posts</a>
+                    </li>
+                    
+                
+            
+            
+                
+                
+            
+                
+                
+            
+        
+
+    </ul>
+</nav>
+
+        
+    <a target="_blank" class="social" title="GitHub" href="https://github.com/solarkennedy">
+        <svg xmlns="http://www.w3.org/2000/svg" width="2.4em" height="2.4em" viewBox="-2 -2 24 24">
+            <path fill="currentColor" d="M18.88 1.099C18.147.366 17.265 0 16.233 0H3.746C2.714 0 1.832.366 1.099 1.099C.366 1.832 0 2.714 0 3.746v12.487c0 1.032.366 1.914 1.099 2.647c.733.733 1.615 1.099 2.647 1.099H6.66c.19 0 .333-.007.429-.02a.504.504 0 0 0 .286-.169c.095-.1.143-.245.143-.435l-.007-.885c-.004-.564-.006-1.01-.006-1.34l-.3.052c-.19.035-.43.05-.721.046a5.555 5.555 0 0 1-.904-.091a2.026 2.026 0 0 1-.872-.39a1.651 1.651 0 0 1-.572-.8l-.13-.3a3.25 3.25 0 0 0-.41-.663c-.186-.243-.375-.407-.566-.494l-.09-.065a.956.956 0 0 1-.17-.156a.723.723 0 0 1-.117-.182c-.026-.061-.004-.111.065-.15c.07-.04.195-.059.378-.059l.26.04c.173.034.388.138.643.311a2.1 2.1 0 0 1 .631.677c.2.355.44.626.722.813c.282.186.566.28.852.28c.286 0 .533-.022.742-.065a2.59 2.59 0 0 0 .585-.196c.078-.58.29-1.028.637-1.34a8.907 8.907 0 0 1-1.333-.234a5.314 5.314 0 0 1-1.223-.507a3.5 3.5 0 0 1-1.047-.872c-.277-.347-.505-.802-.683-1.365c-.177-.564-.266-1.215-.266-1.952c0-1.049.342-1.942 1.027-2.68c-.32-.788-.29-1.673.091-2.652c.252-.079.625-.02 1.119.175c.494.195.856.362 1.086.5c.23.14.414.257.553.352a9.233 9.233 0 0 1 2.497-.338c.859 0 1.691.113 2.498.338l.494-.312a6.997 6.997 0 0 1 1.197-.572c.46-.174.81-.221 1.054-.143c.39.98.424 1.864.103 2.653c.685.737 1.028 1.63 1.028 2.68c0 .737-.089 1.39-.267 1.957c-.177.568-.407 1.023-.689 1.366a3.65 3.65 0 0 1-1.053.865c-.42.234-.828.403-1.223.507a8.9 8.9 0 0 1-1.333.235c.45.39.676 1.005.676 1.846v3.11c0 .147.021.266.065.357a.36.36 0 0 0 .208.189c.096.034.18.056.254.064c.074.01.18.013.318.013h2.914c1.032 0 1.914-.366 2.647-1.099c.732-.732 1.099-1.615 1.099-2.647V3.746c0-1.032-.367-1.914-1.1-2.647z"/>
+        </svg>
+    </a>
+
+
+
+    <a target="_blank" class="social" title="LinkedIn" href="https://www.linkedin.com/in/solarkennedy/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2.4em" viewBox="0 0 448 512">
+            <path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5c0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7c-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5c67.2 0 79.7 44.3 79.7 101.9V416z"/>
+        </svg>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a target="_blank" class="social" title="RSS Feed" href="/posts/index.xml">
+        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2.4em" viewBox="0 0 1280.000000 1280.000000">
+            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)" fill="currentColor">
+                <path d="M2295 11929 c-284 -12 -642 -45 -707 -65 -17 -5 -18 -63 -18 -1039 0 -569 4 -1036 8 -1039 5 -3 74 6 153 19 510 86 1168 95 1789 25 1348 -153 2602 -677 3670 -1531 385 -308 820 -744 1126 -1129 842 -1060 1362 -2313 1514 -3650 70 -621 61 -1279 -25 -1789 -13 -79 -22 -148 -19 -153 3 -4 471 -8 1039 -8 l1035 0 5 23 c51 225 85 942 67 1419 -23 605 -77 1044 -198 1617 -294 1400 -927 2734 -1823 3846 -1043 1295 -2364 2259 -3909 2854 -1158 447 -2451 656 -3707 600z"/>
+                <path d="M2255 7845 c-269 -25 -620 -81 -667 -106 -17 -9 -18 -55 -18 -899 0 -706 3 -890 13 -890 6 0 66 18 132 41 130 44 288 79 467 105 154 21 577 30 749 15 1207 -107 2267 -823 2814 -1902 166 -327 268 -637 330 -1001 38 -227 48 -384 42 -662 -8 -348 -44 -590 -126 -831 -23 -66 -41 -126 -41 -132 0 -10 184 -13 890 -13 844 0 890 1 899 18 27 50 88 452 110 725 14 162 14 624 1 782 -59 703 -233 1323 -545 1945 -481 956 -1313 1788 -2270 2268 -620 310 -1239 483 -1940 542 -165 14 -669 10 -840 -5z"/>
+                <path d="M2519 3815 c-391 -66 -725 -336 -868 -703 -79 -201 -96 -462 -45 -677 83 -344 338 -641 666 -774 116 -47 205 -69 330 -80 412 -39 811 153 1040 500 193 292 240 648 128 981 -135 403 -492 699 -914 757 -100 14 -241 12 -337 -4z"/>
+            </g>
+        </svg>
+    </a>
+
+
+    <a target="_blank" class="social" title="Email" href="mailto:kyle@cascade.family?Subject=Hi%20From%20Blog!">
+       <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2.4em" viewBox="0 0 485.211 485.211">
+            <path fill="currentColor" d="M301.393,241.631L464.866,424.56H20.332l163.474-182.928l58.801,51.443L301.393,241.631z M462.174,60.651H23.027 l219.579,192.142L462.174,60.651z M324.225,221.67l160.986,180.151V80.792L324.225,221.67z M0,80.792v321.029L160.972,221.64 L0,80.792z"/>
+       </svg>
+    </a>
+
+
+<a class="social" title="Subscribe" href="/subscribe">
+	<svg fill="#ffffff" width="2em" height="2.4em" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M279.819,490V357.803l50.461,51.448l49.721-48.517L245,223.082L109.999,360.733l49.721,48.517l50.461-51.448V490H279.819z M159.48,387.628l-27.799-27.133L245,244.951l113.319,115.543l-27.799,27.133l-66.013-67.314v154.374h-39.014V320.314 L159.48,387.628z"></path> <path d="M57.885,111.096c-5.63,0-11.081-1.817-14.632-3.637l-2.684,10.909c3.29,1.817,9.869,3.551,16.539,3.551 c16.015,0,23.544-8.314,23.544-18.094c0-8.224-4.852-13.593-15.148-17.398c-7.537-2.86-10.826-4.505-10.826-8.225 c0-3.032,2.774-5.63,8.486-5.63c5.712,0,9.869,1.645,12.21,2.774l2.938-10.651c-3.462-1.559-8.307-2.942-14.886-2.942 c-13.765,0-22.079,7.619-22.079,17.574c0,8.482,6.325,13.851,16.015,17.227c7.013,2.509,9.787,4.587,9.787,8.225 C67.149,108.588,63.942,111.096,57.885,111.096z"></path> <path d="M29.877,191.533h430.245c16.471,0,29.877-13.406,29.877-29.881V29.881C490,13.406,476.594,0,460.123,0H29.877 C13.406,0,0,13.406,0,29.881v131.771C0,178.127,13.406,191.533,29.877,191.533z M15.313,29.881c0-8.034,6.535-14.569,14.565-14.569 h430.245c8.03,0,14.565,6.535,14.565,14.569v131.771c0,8.034-6.535,14.569-14.565,14.569H29.877 c-8.03,0-14.565-6.535-14.565-14.569V29.881z"></path> <path d="M110.709,122.001c15.23,0,24.322-8.568,24.322-26.573V62.706h-13.159v33.586c0,10.303-3.806,15.152-10.729,15.152 c-6.759,0-10.565-5.11-10.565-15.152V62.706H87.337v32.547C87.337,113.866,95.987,122.001,110.709,122.001z"></path> <path d="M181.544,116.378c3.634-2.946,6.056-7.099,6.056-12.382c0-7.529-4.935-12.55-11.597-14.37v-0.172 c6.58-2.423,9.608-7.271,9.608-12.468c0-5.279-2.946-9.26-7.013-11.425c-4.239-2.512-9.174-3.29-17.227-3.29 c-6.58,0-13.593,0.52-17.055,1.211v57.306c2.946,0.434,7.791,0.867,14.288,0.867C170.202,121.657,177.298,119.75,181.544,116.378z M157.387,72.228c1.129-0.172,2.774-0.348,5.63-0.348c5.974,0,9.346,2.337,9.346,6.752c0,4.329-3.716,7.185-10.647,7.185h-4.329 V72.228z M157.387,95.253h4.508c6.572,0,11.858,2.34,11.858,8.224c0,6.146-5.286,8.396-11.253,8.396c-2.251,0-3.813,0-5.114-0.172 V95.253z"></path> <path d="M209.523,111.096c-5.63,0-11.081-1.817-14.632-3.637l-2.684,10.909c3.29,1.817,9.869,3.551,16.539,3.551 c16.008,0,23.544-8.314,23.544-18.094c0-8.224-4.852-13.593-15.148-17.398c-7.537-2.86-10.826-4.505-10.826-8.225 c0-3.032,2.774-5.63,8.486-5.63c5.712,0,9.869,1.645,12.21,2.774l2.938-10.651c-3.462-1.559-8.307-2.942-14.886-2.942 c-13.765,0-22.079,7.619-22.079,17.574c0,8.482,6.325,13.851,16.015,17.227c7.013,2.509,9.787,4.587,9.787,8.225 C218.786,108.588,215.579,111.096,209.523,111.096z"></path> <path d="M266.937,121.919c7.103,0,12.553-1.301,14.976-2.512l-1.989-10.303c-2.594,1.039-7.013,1.907-10.991,1.907 c-11.776,0-18.699-7.357-18.699-19.043c0-12.987,8.135-19.305,18.61-19.305c4.673,0,8.396,1.039,11.081,2.164l2.684-10.475 c-2.34-1.215-7.529-2.598-14.37-2.598c-17.66,0-31.859,11.081-31.859,30.991C236.379,109.365,246.772,121.919,266.937,121.919z"></path> <path d="M301.495,98.113h3.985c5.368,0.086,7.881,2.075,9.436,9.346c1.735,7.185,3.118,11.948,4.067,13.593h13.503 c-1.122-2.251-2.938-9.869-4.755-16.449c-1.473-5.365-3.724-9.26-7.791-10.905v-0.262c5.017-1.817,10.296-6.924,10.296-14.37 c0-5.365-1.899-9.436-5.361-12.206c-4.157-3.29-10.221-4.587-18.871-4.587c-7.013,0-13.339,0.52-17.578,1.211v57.568h13.07V98.113z M301.495,72.486c0.957-0.172,2.774-0.43,5.974-0.43c6.064,0.086,9.697,2.77,9.697,8.135c0,5.107-3.895,8.396-10.475,8.396h-5.196 V72.486z"></path> <rect x="337.615" y="62.706" width="13.249" height="58.345"></rect> <path d="M397.355,116.378c3.634-2.946,6.056-7.099,6.056-12.382c0-7.529-4.935-12.55-11.596-14.37v-0.172 c6.58-2.423,9.608-7.271,9.608-12.468c0-5.279-2.946-9.26-7.013-11.425c-4.239-2.512-9.174-3.29-17.227-3.29 c-6.58,0-13.593,0.52-17.055,1.211v57.306c2.946,0.434,7.791,0.867,14.288,0.867C386.013,121.657,393.108,119.75,397.355,116.378z M373.197,72.228c1.129-0.172,2.774-0.348,5.63-0.348c5.974,0,9.346,2.337,9.346,6.752c0,4.329-3.716,7.185-10.647,7.185h-4.329 V72.228z M373.197,95.253h4.509c6.572,0,11.858,2.34,11.858,8.224c0,6.146-5.286,8.396-11.253,8.396c-2.251,0-3.813,0-5.114-0.172 V95.253z"></path> <polygon points="447.494,110.229 423.516,110.229 423.516,96.378 444.982,96.378 444.982,85.645 423.516,85.645 423.516,73.525 446.283,73.525 446.283,62.706 410.267,62.706 410.267,121.051 447.494,121.051 "></polygon> </g> </g></svg>
+	</a>
+
+
+        <p class="footnote">
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <div class="info">
+  <h1 class="post-title">
+    <a href="https://kyle.cascade.family/posts/automating-a-roomba-with-esphome/">Automating a Roomba with ESPHome</a>
+  </h1>
+
+  <div class="headline">
+    <div>
+      
+      <time datetime=" 2024-10-10T00:00:00Z" class="post-date">
+        October 10, 2024
+      </time>
+      
+    </div>
+
+    
+  </div>
+
+  
+  
+
+  
+</div>
+
+  <p>When I first bought this wifi-connected Roomba, I knew that someday it might have to join the <a href="https://x.com/internetofshit" target="_blank">Internet of Shit</a>.</p>
+<p><img src="/uploads/2024-10-10-roomba-esphome/roomba-wifi.jpeg" alt="Wifi Roomba"></p>
+<p>The iRobot corporation has a pretty good track record for supporting their products, but at <strong>some</strong> point those servers are going to come down, or the app will break, or the SSL certificates will expire, etc.</p>
+<p>These products need continuous support from their companies in order to operate, and products simply cannot be supported forever.</p>
+<p>How can I ensure this Roomba will last just as long as my &ldquo;dumb&rdquo; Roomba that just bounces off of walls?
+What if I didn&rsquo;t need continuous support from the iRobot corporation&rsquo;s servers?</p>
+<h2 id="taking-ownership">Taking Ownership</h2>
+<p>Luckily, at the time of this writing, you can actually extract the your Roomba&rsquo;s <a href="https://github.com/koalazak/dorita980?tab=readme-ov-file#how-to-get-your-usernameblid-and-password" target="_blank">Username and Password</a> from it.</p>
+<p>But even if you do, you are still just one firmware upgrade away from your vacuum turning into a boat anchor.</p>
+<p>What I really want to do is to disconnect my Roomba from the internet entirely.
+I don&rsquo;t want it to do a little jingle in the middle of the night after a firmware upgrade ever again.
+I never want it to upload photographs of me in a robe to iRobot servers ever again.
+I also never want to use the app or get push notifications from it ever again.</p>
+<p>One way to achieve this independence is with some open source software I&rsquo;m releasing today: <a href="https://github.com/solarkennedy/roomba-bridge-esphome" target="_blank">The Roomba-Bridge ESPHome component</a>.</p>
+<h2 id="the-roomba-bridge">The Roomba Bridge</h2>
+<p>Without even opening up the Roomba you can flash this software onto a microcontroller and get access to all the Roomba&rsquo;s functions, <em>without internet access or an app</em>.</p>
+<p><img src="/uploads/2024-10-10-roomba-esphome/esphome-screenshot.png" alt="ESPHome Web Interface Screenshot"></p>
+<p><a href="https://esphome.io/" target="_blank">ESPHome</a> is my framework of choice for building reliable, secure, and functional IOT dohickies in my house, and this bridge is built as an ESPHome component.</p>
+<p>This means you get goodies like:</p>
+<ul>
+<li>Wide integration with an enormous number of integrations</li>
+<li>Easy to use and well-documented config language</li>
+<li>Over-the-air updates and logging</li>
+<li>Decent web interface</li>
+</ul>
+<p>The biggest downside is the learning curve.
+If you have some sort of server (like a Raspberry Pi) and are just getting into home automation, Home Assistant is probably a better choice and also has a <a href="https://www.home-assistant.io/integrations/roomba/" target="_blank">Roomba Integration</a>.</p>
+<h2 id="prior-art">Prior Art</h2>
+<p>I was only able to build this based on the prior art of others:</p>
+<ul>
+<li><a href="https://www.home-assistant.io/integrations/roomba/" target="_blank">Home Assistant Roomba Integration</a> - Runs on your existing HA installation</li>
+<li><a href="https://github.com/NickWaterton/Roomba980-Python" target="_blank">Roomba980-Python</a> - the Python library upon which the HA extension is based</li>
+<li><a href="https://github.com/koalazak/rest980" target="_blank">Rest980</a> - REST API for Roombas written in NodeJS</li>
+<li><a href="https://github.com/koalazak/dorita980" target="_blank">Dorita980</a> - Node library upon which Rest980 is based</li>
+</ul>
+<p>My code just means you can control your Roomba, without Home Assistant, and without running nodejs or python or anything that requires a &ldquo;server&rdquo;.</p>
+<h2 id="demo">Demo</h2>
+<p>ESPHome is extremely flexible, and allows you to wire automations together.
+With my bridge in place, I can hook up another ESPHome running a <a href="https://esphome.io/components/rf_bridge.html" target="_blank">rf-bridge</a> and get what I <em>actually</em> wanted: Real physical buttons to control the Roomba!</p>
+<p><video controls width="800" >
+  <source src="/uploads/2024-10-10-roomba-esphome/start.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<video controls width="800" >
+  <source src="/uploads/2024-10-10-roomba-esphome/dock.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</p>
+<p>I plan on adding more buttons for cleaning each room.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>I have a lot of mixed feelings about &ldquo;the internet of things&rdquo;.
+One on the one hand, I love automating physical things and making my life more convenient.
+On the other hand, I detest apps, firmware updates, and just generally any time where &ldquo;my stuff&rdquo; is not in my control, but really in the control of some other company.</p>
+<p>You can have both!
+Tools like ESPHome and Home Assistant are great ways for consumers to take back control of their things and shed dependence on special apps, remote servers you don&rsquo;t control, and heck dependence on the internet!
+(one should still be able to turn on their lights or run the vacuum if the internet is down)</p>
+
+  
+  <hr>
+<div class="footer">
+    
+	    
+            <a class="previous-post" href="https://kyle.cascade.family/posts/hello-world/?ref=footer"><span style="font-weight:bold;">« Previous</span><br>Hello World</a>
+        
+	    
+    
+</div>
+
+  
+  <a href="mailto:kyle@cascade.family?subject=Comment on: Automating%20a%20Roomba%20with%20ESPHome">Comment via email</a>
+
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#taking-ownership">Taking Ownership</a></li>
+    <li><a href="#the-roomba-bridge">The Roomba Bridge</a></li>
+    <li><a href="#prior-art">Prior Art</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div>
+    </body>
+</html>
