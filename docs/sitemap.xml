@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://kyle.cascade.family/posts/automating-a-roomba-with-esphome/</loc>
-    <lastmod>2024-10-10T00:00:00+00:00</lastmod>
+    <loc>https://kyle.cascade.family/posts/a-baby-eink-dashboard/</loc>
+    <lastmod>2024-10-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kyle.cascade.family/</loc>
-    <lastmod>2024-10-10T00:00:00+00:00</lastmod>
+    <lastmod>2024-10-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kyle.cascade.family/posts/</loc>
+    <lastmod>2024-10-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://kyle.cascade.family/posts/automating-a-roomba-with-esphome/</loc>
     <lastmod>2024-10-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kyle.cascade.family/posts/hello-world/</loc>
