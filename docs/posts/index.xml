@@ -6,7 +6,19 @@
     <description>Recent content in Posts on kyle.cascade.family</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kyle.cascade.family/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 27 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://kyle.cascade.family/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Saving Laptop Battery by Suspending Workspaces in i3</title>
+      <link>https://kyle.cascade.family/posts/saving-laptop-battery-by-suspending-workspaces-in-i3/</link>
+      <pubDate>Sun, 27 Oct 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://kyle.cascade.family/posts/saving-laptop-battery-by-suspending-workspaces-in-i3/</guid>
+      <description>I love my little OneNetbook 4:
+I love its capabilities and size.
+For the nerds:
+.-/+oossssoo+/-. kyle@netbook4 `:+ssssssssssssssssss+:` ------------- -+ssssssssssssssssssyyssss+- OS: Ubuntu 24.04.1 LTS x86_64 .ossssssssssssssssssdMMMNysssso. Host: SYSTEM_PRODUCT_NAME /ssssssssssshdmmNNmmyNMMMMhssssss/ Kernel: 6.8.0-45-generic +ssssssssshmydMMMMMMMNddddyssssssss+ Uptime: 23 hours, 2 mins /sssssssshNMMMyhhyyyyhmNMMMNhssssssss/ Packages: 4492 (dpkg), 33 (flatpak) .ssssssssdMMMNhsssssssssshNMMMdssssssss. Shell: bash 5.2.21 +sssshhhyNMMNyssssssssssssyNMMMysssssss+ Resolution: 2560x1600 ossyNMMMNyMMhsssssssssssssshmmmhssssssso DE: Regolith 4.3 ossyNMMMNyMMhsssssssssssssshmmmhssssssso WM: i3 +sssshhhyNMMNyssssssssssssyNMMMysssssss+ Theme: Nordic [GTK2/3] .ssssssssdMMMNhsssssssssshNMMMdssssssss. Icons: Arc [GTK2/3] /sssssssshNMMMyhhyyyyhdNMMMNhssssssss/ Terminal: st +sssssssssdmydMMMMMMMMddddyssssssss+ Terminal Font: UbuntuMono Nerd Font Mono /ssssssssssshdmNNNNmyNMMMMhssssss/ CPU: 11th Gen Intel i7-1160G7 (8) @ 4.</description>
+    </item>
+    
     <item>
       <title>A Baby eInk Dashboard</title>
       <link>https://kyle.cascade.family/posts/a-baby-eink-dashboard/</link>
