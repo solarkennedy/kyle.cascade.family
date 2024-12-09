@@ -590,7 +590,7 @@ end
 <li>Team <code>system</code> might even feel slighted.
 Why should they have to only work on the &ldquo;legacy&rdquo; codebase?</li>
 <li>Team <code>system2</code> misses out on first-hand experience with the continued changes that happen on <code>system</code>, the drift continues.</li>
-<li>Team <code>system2</code> may being to leave the ground (sometimes called &ldquo;infrastructure astronauts&rdquo;) as they are further removed from <code>system</code>.
+<li>Team <code>system2</code> may being to &ldquo;leave the ground&rdquo; (sometimes called &ldquo;infrastructure astronauts&rdquo;) as they are further removed from <code>system</code> (in other words, they might start building things they don&rsquo;t need).
 They don&rsquo;t have any customers (yet) to keep happy, so they might let it go to their heads and have a true <a href="https://en.wikipedia.org/wiki/Second-system_effect" target="_blank">second-system effect</a>.</li>
 </ul>
 <p><strong>Better Way</strong>: Keep the team unified because they all need to be able to maintain <code>system2</code> when it takes over.
@@ -614,6 +614,8 @@ Rust may be a good language, but if the <em>team</em> isn&rsquo;t ready to suppo
 Only on the most mechanical of migrations would I advocate for this approach.
 Only when there is nothing really to be learned by doing the migration, when it is just kinda busy work.</p>
 <p><strong>Better Way</strong>: At the very least make the one person bring a junior engineer along for the ride!</p>
+<p>A counterpoint to this bad idea is something I actually <em>like</em> to see, where one person builds up a prototype (sometimes called a Spike or Tracer Bullet).
+As long as these prototype are planned to be <a href="https://wiki.c2.com/?PlanToThrowOneAway" target="_blank">&ldquo;the one to throw away&rdquo;</a>, and the rest of the team helps swarm on the production version of that prototype, then I&rsquo;m a fan.</p>
 <h2 id="bad-idea-4-stacking-bets">Bad Idea 4: Stacking Bets</h2>
 <p>&ldquo;Stacking Bets&rdquo; in this context means that you set up your big change (migration, rewrite, upgrade, etc.) upon another one that happens to be going on in the organization.</p>
 <p>An example might be that you might bet your upgrade your python monolith from Python 2 to Python 3 <em>will stack upon</em> an OS upgrade from Ubuntu 18.04 to Ubuntu 22.04, because you will do both together.
@@ -628,6 +630,8 @@ If one team has to delay or advance the thing you are stacked upon, you may be s
 The team doing the OS upgrade has to worry about breaking the team doing the Python 3 migration because they are getting it &ldquo;For Free&rdquo;.</li>
 <li>They may be showstopping issues on <em>either</em> upgrade that will hard block both.
 Now you both lose.</li>
+<li>Sometimes we stack bets for the wrong political reasons, because it feels good to &ldquo;support&rdquo; or &ldquo;provide momentum&rdquo; behind other organizational efforts.
+Same deal, you are not helping, you are hurting by coupling your timelines.</li>
 </ul>
 <p>I&rsquo;ve never seen this work.
 It is just plain better to architect your change such that it is independent of any other changes.</p>
@@ -701,7 +705,7 @@ Either way, your customers don&rsquo;t mind that this migration happened.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>For infrastructure systems, I think the Strangler Fig Pattern is the only sane way to migrate from one platform to another.
 There is just too much risk to do it any other way.</p>
-<p><code>system</code> _becomes <code>system2</code> though incremental delivery and piecemeal functionality upgrades.
+<p><code>system</code> <em>becomes</em> <code>system2</code> though incremental delivery and piecemeal functionality upgrades.
 It does <em>not</em> get there through a big rewrite and brute force migration.</p>
 <p>To recap some core migration tenets:</p>
 <blockquote>

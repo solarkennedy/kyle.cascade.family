@@ -222,7 +222,7 @@ This is a bad idea because:
 - Team `system` might even feel slighted.
   Why should they have to only work on the "legacy" codebase?
 - Team `system2` misses out on first-hand experience with the continued changes that happen on `system`, the drift continues.
-- Team `system2` may being to leave the ground (sometimes called "infrastructure astronauts") as they are further removed from `system`.
+- Team `system2` may being to "leave the ground" (sometimes called "infrastructure astronauts") as they are further removed from `system` (in other words, they might start building things they don't need).
   They don't have any customers (yet) to keep happy, so they might let it go to their heads and have a true [second-system effect](https://en.wikipedia.org/wiki/Second-system_effect).
 
 **Better Way**: Keep the team unified because they all need to be able to maintain `system2` when it takes over.
@@ -252,6 +252,9 @@ Only when there is nothing really to be learned by doing the migration, when it 
 
 **Better Way**: At the very least make the one person bring a junior engineer along for the ride!
 
+A counterpoint to this bad idea is something I actually _like_ to see, where one person builds up a prototype (sometimes called a Spike or Tracer Bullet).
+As long as these prototype are planned to be ["the one to throw away"](https://wiki.c2.com/?PlanToThrowOneAway), and the rest of the team helps swarm on the production version of that prototype, then I'm a fan.
+
 ## Bad Idea 4: Stacking Bets
 
 "Stacking Bets" in this context means that you set up your big change (migration, rewrite, upgrade, etc.) upon another one that happens to be going on in the organization.
@@ -270,6 +273,8 @@ Here is why:
   The team doing the OS upgrade has to worry about breaking the team doing the Python 3 migration because they are getting it "For Free".
 - They may be showstopping issues on _either_ upgrade that will hard block both.
   Now you both lose.
+- Sometimes we stack bets for the wrong political reasons, because it feels good to "support" or "provide momentum" behind other organizational efforts.
+  Same deal, you are not helping, you are hurting by coupling your timelines.
 
 I've never seen this work.
 It is just plain better to architect your change such that it is independent of any other changes.
@@ -364,7 +369,7 @@ Either way, your customers don't mind that this migration happened.
 For infrastructure systems, I think the Strangler Fig Pattern is the only sane way to migrate from one platform to another.
 There is just too much risk to do it any other way.
 
-`system` _becomes `system2` though incremental delivery and piecemeal functionality upgrades.
+`system` _becomes_ `system2` though incremental delivery and piecemeal functionality upgrades.
 It does _not_ get there through a big rewrite and brute force migration.
 
 To recap some core migration tenets:
