@@ -1,7 +1,6 @@
 ---
 title: "How to Actually Migrate Complex Systems in Infrastructure"
 date: 2024-12-08
-published: false
 ---
 
 {{< rawhtml >}}

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+    
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+<script defer language="javascript" type="text/javascript" src="/js/bundle.min.14549c76bbc96f0af1574b0259efd70e52908cd36fb4d14ed3d290a1b6479eae.js"></script>
+
+
+
+
+
+
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="icon" href=/images/favicon-32x32.png>
+
+    
+    
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+
+
+<!-- Open Graph image and Twitter Card metadata -->
+
+<title itemprop="name">Kyle Cascade - How to Actually Migrate Complex Systems in Infrastructure</title>
+<meta property="og:title" content=Kyle&#32;Cascade&#32;-&#32;How&#32;to&#32;Actually&#32;Migrate&#32;Complex&#32;Systems&#32;in&#32;Infrastructure />
+<meta name="twitter:title" content=Kyle&#32;Cascade&#32;-&#32;How&#32;to&#32;Actually&#32;Migrate&#32;Complex&#32;Systems&#32;in&#32;Infrastructure />
+<meta itemprop="name" content=Kyle&#32;Cascade&#32;-&#32;How&#32;to&#32;Actually&#32;Migrate&#32;Complex&#32;Systems&#32;in&#32;Infrastructure />
+<meta name="application-name" content=Kyle&#32;Cascade&#32;-&#32;How&#32;to&#32;Actually&#32;Migrate&#32;Complex&#32;Systems&#32;in&#32;Infrastructure />
+<meta property="og:site_name" content="kyle.cascade.family" />
+
+
+<meta name="description" content="" />
+<meta itemprop="description" content="" />
+<meta property="og:description" content="" />
+<meta name="twitter:description" content="" />
+
+
+<base href="https://kyle.cascade.family/posts/how-to-actually-migrate-complex-systems-in-infrastructure/" />
+<link rel="canonical" href="https://kyle.cascade.family/posts/how-to-actually-migrate-complex-systems-in-infrastructure/" itemprop="url" />
+<meta name="url" content="https://kyle.cascade.family/posts/how-to-actually-migrate-complex-systems-in-infrastructure/" />
+<meta name="twitter:url" content="https://kyle.cascade.family/posts/how-to-actually-migrate-complex-systems-in-infrastructure/" />
+<meta property="og:url" content="https://kyle.cascade.family/posts/how-to-actually-migrate-complex-systems-in-infrastructure/" />
+
+
+<meta property="og:updated_time" content=8012-08-12T120:00:24Z />
+
+
+<link rel="sitemap" type="application/xml" title="Sitemap" href='https://kyle.cascade.family/sitemap.xml' />
+
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta property="fb:admins" content="" />
+
+
+<meta name="apple-mobile-web-app-title" content="kyle.cascade.family" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+
+
+
+
+
+
+<meta property="og:type" content="article" />
+<meta property="article:publisher" content="" />
+<meta property="og:article:published_time" content=8012-08-12T120:00:24Z />
+<meta property="article:published_time" content=8012-08-12T120:00:24Z />
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.110.0">
+
+
+    
+    
+
+<link type="text/css" rel="stylesheet" href="/css/bundle.min.68ff1b4cb314f7ae0d338029a18b60bffd6628fe424f44181c1785b70ad8327b.css">
+
+
+    
+    <style>
+    body {
+        --sidebar-bg-color: #202020;
+        --sidebar-img-border-color: #515151;
+        --sidebar-p-color: #909090;
+        --sidebar-h1-color: #FFF;
+        --sidebar-a-color: #FFF;
+        --sidebar-socials-color: #FFF;
+        --text-color: #222;
+        --bkg-color: #FAF9F6;
+        --post-title-color: #303030;
+        --list-color: #5a5a5a;
+        --link-color: #268bd2;
+        --date-color: #515151;
+        --table-border-color: #E5E5E5;
+        --table-stripe-color: #F9F9F9;
+        --code-color: #000;
+        --code-background-color: #E5E5E5;
+        --code-block-color: #fff;
+        --code-block-background-color: #272822;
+        --moon-sun-color: #FFF;
+        --moon-sun-background-color: #515151;
+    }
+    body.dark-theme {
+        --text-color: #eee;
+        --bkg-color: #121212;
+        --post-title-color: #DBE2E9;
+        --list-color: #9d9d9d;
+        --link-color: #268bd2;
+        --date-color: #9a9a9a;
+        --table-border-color: #515151;
+        --table-stripe-color: #202020;
+        --code-color: #fff;
+        --code-background-color: #515151;
+        --code-block-color: #fff;
+        --code-block-background-color: #272822;
+    }
+    body {
+        background-color: var(--bkg-color);
+    }
+</style>
+
+</head>
+
+    <body class="dark-theme">
+        <div class="wrapper">
+            <aside class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="light-dark" align="right">
+    <button class="btn-light-dark" title="Toggle light/dark mode">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M6 .278a.768.768 0 0 1 .08.858a7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277c.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316a.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71C0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16">
+            <path fill="currentColor" d="M8 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+    </button>
+</div>
+
+        <div class="sidebar-about">
+    <h1 class="brand">
+        
+            <a href="https://kyle.cascade.family/">
+                <img src="/images/KyleCascade.png" alt="brand image">
+            </a>
+        
+        
+            <a href="https://kyle.cascade.family/">
+                <h1>Kyle Cascade</h1>
+            </a>
+        
+    </h1>
+    <p class="lead">
+    
+    </p>
+</div>
+
+        <nav>
+    <ul class="sidebar-nav">
+
+        
+        
+        
+        
+            
+
+            
+                
+                
+            
+            
+                
+                
+            
+                
+                
+            
+        
+        
+            
+
+            
+                
+                
+            
+            
+                
+                
+            
+                
+                
+            
+        
+        
+            
+
+            
+                
+                
+                    <li class="heading">
+                        <a href="/posts/">Recent Posts</a>
+                    </li>
+                    
+                        <li class="sub-heading">
+                            
+                        </li>
+                        
+                            <li class="bullet">
+                                <a href="https://kyle.cascade.family/posts/how-to-actually-migrate-complex-systems-in-infrastructure/">How to Actually Migrate Complex Systems in Infrastructure</a>
+                            </li>
+                        
+                            <li class="bullet">
+                                <a href="https://kyle.cascade.family/posts/saving-laptop-battery-by-suspending-workspaces-in-i3/">Saving Laptop Battery by Suspending Workspaces in i3</a>
+                            </li>
+                        
+                            <li class="bullet">
+                                <a href="https://kyle.cascade.family/posts/a-baby-eink-dashboard/">A Baby eInk Dashboard</a>
+                            </li>
+                        
+                            <li class="bullet">
+                                <a href="https://kyle.cascade.family/posts/automating-a-roomba-with-esphome/">Automating a Roomba with ESPHome</a>
+                            </li>
+                        
+                            <li class="bullet">
+                                <a href="https://kyle.cascade.family/posts/hello-world/">Hello World</a>
+                            </li>
+                        
+                    
+                
+            
+            
+                
+                
+            
+                
+                
+            
+        
+        
+            
+
+            
+                
+                
+                    <li class="heading">
+                        <a href="/posts/">All Posts</a>
+                    </li>
+                    
+                
+            
+            
+                
+                
+            
+                
+                
+            
+        
+
+    </ul>
+</nav>
+
+        
+    <a target="_blank" class="social" title="GitHub" href="https://github.com/solarkennedy">
+        <svg xmlns="http://www.w3.org/2000/svg" width="2.4em" height="2.4em" viewBox="-2 -2 24 24">
+            <path fill="currentColor" d="M18.88 1.099C18.147.366 17.265 0 16.233 0H3.746C2.714 0 1.832.366 1.099 1.099C.366 1.832 0 2.714 0 3.746v12.487c0 1.032.366 1.914 1.099 2.647c.733.733 1.615 1.099 2.647 1.099H6.66c.19 0 .333-.007.429-.02a.504.504 0 0 0 .286-.169c.095-.1.143-.245.143-.435l-.007-.885c-.004-.564-.006-1.01-.006-1.34l-.3.052c-.19.035-.43.05-.721.046a5.555 5.555 0 0 1-.904-.091a2.026 2.026 0 0 1-.872-.39a1.651 1.651 0 0 1-.572-.8l-.13-.3a3.25 3.25 0 0 0-.41-.663c-.186-.243-.375-.407-.566-.494l-.09-.065a.956.956 0 0 1-.17-.156a.723.723 0 0 1-.117-.182c-.026-.061-.004-.111.065-.15c.07-.04.195-.059.378-.059l.26.04c.173.034.388.138.643.311a2.1 2.1 0 0 1 .631.677c.2.355.44.626.722.813c.282.186.566.28.852.28c.286 0 .533-.022.742-.065a2.59 2.59 0 0 0 .585-.196c.078-.58.29-1.028.637-1.34a8.907 8.907 0 0 1-1.333-.234a5.314 5.314 0 0 1-1.223-.507a3.5 3.5 0 0 1-1.047-.872c-.277-.347-.505-.802-.683-1.365c-.177-.564-.266-1.215-.266-1.952c0-1.049.342-1.942 1.027-2.68c-.32-.788-.29-1.673.091-2.652c.252-.079.625-.02 1.119.175c.494.195.856.362 1.086.5c.23.14.414.257.553.352a9.233 9.233 0 0 1 2.497-.338c.859 0 1.691.113 2.498.338l.494-.312a6.997 6.997 0 0 1 1.197-.572c.46-.174.81-.221 1.054-.143c.39.98.424 1.864.103 2.653c.685.737 1.028 1.63 1.028 2.68c0 .737-.089 1.39-.267 1.957c-.177.568-.407 1.023-.689 1.366a3.65 3.65 0 0 1-1.053.865c-.42.234-.828.403-1.223.507a8.9 8.9 0 0 1-1.333.235c.45.39.676 1.005.676 1.846v3.11c0 .147.021.266.065.357a.36.36 0 0 0 .208.189c.096.034.18.056.254.064c.074.01.18.013.318.013h2.914c1.032 0 1.914-.366 2.647-1.099c.732-.732 1.099-1.615 1.099-2.647V3.746c0-1.032-.367-1.914-1.1-2.647z"/>
+        </svg>
+    </a>
+
+
+
+    <a target="_blank" class="social" title="LinkedIn" href="https://www.linkedin.com/in/solarkennedy/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2.4em" viewBox="0 0 448 512">
+            <path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5c0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7c-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5c67.2 0 79.7 44.3 79.7 101.9V416z"/>
+        </svg>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a target="_blank" class="social" title="RSS Feed" href="/posts/index.xml">
+        <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2.4em" viewBox="0 0 1280.000000 1280.000000">
+            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)" fill="currentColor">
+                <path d="M2295 11929 c-284 -12 -642 -45 -707 -65 -17 -5 -18 -63 -18 -1039 0 -569 4 -1036 8 -1039 5 -3 74 6 153 19 510 86 1168 95 1789 25 1348 -153 2602 -677 3670 -1531 385 -308 820 -744 1126 -1129 842 -1060 1362 -2313 1514 -3650 70 -621 61 -1279 -25 -1789 -13 -79 -22 -148 -19 -153 3 -4 471 -8 1039 -8 l1035 0 5 23 c51 225 85 942 67 1419 -23 605 -77 1044 -198 1617 -294 1400 -927 2734 -1823 3846 -1043 1295 -2364 2259 -3909 2854 -1158 447 -2451 656 -3707 600z"/>
+                <path d="M2255 7845 c-269 -25 -620 -81 -667 -106 -17 -9 -18 -55 -18 -899 0 -706 3 -890 13 -890 6 0 66 18 132 41 130 44 288 79 467 105 154 21 577 30 749 15 1207 -107 2267 -823 2814 -1902 166 -327 268 -637 330 -1001 38 -227 48 -384 42 -662 -8 -348 -44 -590 -126 -831 -23 -66 -41 -126 -41 -132 0 -10 184 -13 890 -13 844 0 890 1 899 18 27 50 88 452 110 725 14 162 14 624 1 782 -59 703 -233 1323 -545 1945 -481 956 -1313 1788 -2270 2268 -620 310 -1239 483 -1940 542 -165 14 -669 10 -840 -5z"/>
+                <path d="M2519 3815 c-391 -66 -725 -336 -868 -703 -79 -201 -96 -462 -45 -677 83 -344 338 -641 666 -774 116 -47 205 -69 330 -80 412 -39 811 153 1040 500 193 292 240 648 128 981 -135 403 -492 699 -914 757 -100 14 -241 12 -337 -4z"/>
+            </g>
+        </svg>
+    </a>
+
+
+    <a target="_blank" class="social" title="Email" href="mailto:kyle@cascade.family?Subject=Hi%20From%20Blog!">
+       <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2.4em" viewBox="0 0 485.211 485.211">
+            <path fill="currentColor" d="M301.393,241.631L464.866,424.56H20.332l163.474-182.928l58.801,51.443L301.393,241.631z M462.174,60.651H23.027 l219.579,192.142L462.174,60.651z M324.225,221.67l160.986,180.151V80.792L324.225,221.67z M0,80.792v321.029L160.972,221.64 L0,80.792z"/>
+       </svg>
+    </a>
+
+
+<a class="social" title="Subscribe" href="/subscribe">
+	<svg fill="#ffffff" width="2em" height="2.4em" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M279.819,490V357.803l50.461,51.448l49.721-48.517L245,223.082L109.999,360.733l49.721,48.517l50.461-51.448V490H279.819z M159.48,387.628l-27.799-27.133L245,244.951l113.319,115.543l-27.799,27.133l-66.013-67.314v154.374h-39.014V320.314 L159.48,387.628z"></path> <path d="M57.885,111.096c-5.63,0-11.081-1.817-14.632-3.637l-2.684,10.909c3.29,1.817,9.869,3.551,16.539,3.551 c16.015,0,23.544-8.314,23.544-18.094c0-8.224-4.852-13.593-15.148-17.398c-7.537-2.86-10.826-4.505-10.826-8.225 c0-3.032,2.774-5.63,8.486-5.63c5.712,0,9.869,1.645,12.21,2.774l2.938-10.651c-3.462-1.559-8.307-2.942-14.886-2.942 c-13.765,0-22.079,7.619-22.079,17.574c0,8.482,6.325,13.851,16.015,17.227c7.013,2.509,9.787,4.587,9.787,8.225 C67.149,108.588,63.942,111.096,57.885,111.096z"></path> <path d="M29.877,191.533h430.245c16.471,0,29.877-13.406,29.877-29.881V29.881C490,13.406,476.594,0,460.123,0H29.877 C13.406,0,0,13.406,0,29.881v131.771C0,178.127,13.406,191.533,29.877,191.533z M15.313,29.881c0-8.034,6.535-14.569,14.565-14.569 h430.245c8.03,0,14.565,6.535,14.565,14.569v131.771c0,8.034-6.535,14.569-14.565,14.569H29.877 c-8.03,0-14.565-6.535-14.565-14.569V29.881z"></path> <path d="M110.709,122.001c15.23,0,24.322-8.568,24.322-26.573V62.706h-13.159v33.586c0,10.303-3.806,15.152-10.729,15.152 c-6.759,0-10.565-5.11-10.565-15.152V62.706H87.337v32.547C87.337,113.866,95.987,122.001,110.709,122.001z"></path> <path d="M181.544,116.378c3.634-2.946,6.056-7.099,6.056-12.382c0-7.529-4.935-12.55-11.597-14.37v-0.172 c6.58-2.423,9.608-7.271,9.608-12.468c0-5.279-2.946-9.26-7.013-11.425c-4.239-2.512-9.174-3.29-17.227-3.29 c-6.58,0-13.593,0.52-17.055,1.211v57.306c2.946,0.434,7.791,0.867,14.288,0.867C170.202,121.657,177.298,119.75,181.544,116.378z M157.387,72.228c1.129-0.172,2.774-0.348,5.63-0.348c5.974,0,9.346,2.337,9.346,6.752c0,4.329-3.716,7.185-10.647,7.185h-4.329 V72.228z M157.387,95.253h4.508c6.572,0,11.858,2.34,11.858,8.224c0,6.146-5.286,8.396-11.253,8.396c-2.251,0-3.813,0-5.114-0.172 V95.253z"></path> <path d="M209.523,111.096c-5.63,0-11.081-1.817-14.632-3.637l-2.684,10.909c3.29,1.817,9.869,3.551,16.539,3.551 c16.008,0,23.544-8.314,23.544-18.094c0-8.224-4.852-13.593-15.148-17.398c-7.537-2.86-10.826-4.505-10.826-8.225 c0-3.032,2.774-5.63,8.486-5.63c5.712,0,9.869,1.645,12.21,2.774l2.938-10.651c-3.462-1.559-8.307-2.942-14.886-2.942 c-13.765,0-22.079,7.619-22.079,17.574c0,8.482,6.325,13.851,16.015,17.227c7.013,2.509,9.787,4.587,9.787,8.225 C218.786,108.588,215.579,111.096,209.523,111.096z"></path> <path d="M266.937,121.919c7.103,0,12.553-1.301,14.976-2.512l-1.989-10.303c-2.594,1.039-7.013,1.907-10.991,1.907 c-11.776,0-18.699-7.357-18.699-19.043c0-12.987,8.135-19.305,18.61-19.305c4.673,0,8.396,1.039,11.081,2.164l2.684-10.475 c-2.34-1.215-7.529-2.598-14.37-2.598c-17.66,0-31.859,11.081-31.859,30.991C236.379,109.365,246.772,121.919,266.937,121.919z"></path> <path d="M301.495,98.113h3.985c5.368,0.086,7.881,2.075,9.436,9.346c1.735,7.185,3.118,11.948,4.067,13.593h13.503 c-1.122-2.251-2.938-9.869-4.755-16.449c-1.473-5.365-3.724-9.26-7.791-10.905v-0.262c5.017-1.817,10.296-6.924,10.296-14.37 c0-5.365-1.899-9.436-5.361-12.206c-4.157-3.29-10.221-4.587-18.871-4.587c-7.013,0-13.339,0.52-17.578,1.211v57.568h13.07V98.113z M301.495,72.486c0.957-0.172,2.774-0.43,5.974-0.43c6.064,0.086,9.697,2.77,9.697,8.135c0,5.107-3.895,8.396-10.475,8.396h-5.196 V72.486z"></path> <rect x="337.615" y="62.706" width="13.249" height="58.345"></rect> <path d="M397.355,116.378c3.634-2.946,6.056-7.099,6.056-12.382c0-7.529-4.935-12.55-11.596-14.37v-0.172 c6.58-2.423,9.608-7.271,9.608-12.468c0-5.279-2.946-9.26-7.013-11.425c-4.239-2.512-9.174-3.29-17.227-3.29 c-6.58,0-13.593,0.52-17.055,1.211v57.306c2.946,0.434,7.791,0.867,14.288,0.867C386.013,121.657,393.108,119.75,397.355,116.378z M373.197,72.228c1.129-0.172,2.774-0.348,5.63-0.348c5.974,0,9.346,2.337,9.346,6.752c0,4.329-3.716,7.185-10.647,7.185h-4.329 V72.228z M373.197,95.253h4.509c6.572,0,11.858,2.34,11.858,8.224c0,6.146-5.286,8.396-11.253,8.396c-2.251,0-3.813,0-5.114-0.172 V95.253z"></path> <polygon points="447.494,110.229 423.516,110.229 423.516,96.378 444.982,96.378 444.982,85.645 423.516,85.645 423.516,73.525 446.283,73.525 446.283,62.706 410.267,62.706 410.267,121.051 447.494,121.051 "></polygon> </g> </g></svg>
+	</a>
+
+
+        <p class="footnote">
+</p>
+
+  </div>
+</aside>
+
+            <main class="content container">
+                <div class="post">
+  <div class="info">
+  <h1 class="post-title">
+    <a href="https://kyle.cascade.family/posts/how-to-actually-migrate-complex-systems-in-infrastructure/">How to Actually Migrate Complex Systems in Infrastructure</a>
+  </h1>
+
+  <div class="headline">
+    <div>
+      
+      <time datetime=" 2024-12-08T00:00:00Z" class="post-date">
+        December 8, 2024
+      </time>
+      
+    </div>
+
+    
+  </div>
+
+  
+  
+
+  
+</div>
+
+  
+
+<div class="form-container" style="border: 2px solid #EEE; padding: 10px; border-radius: 5px;">
+    <p>
+        Want to make this blog post more fun to read?
+        <br>
+        Replace the placeholder system names with ones you are familiar with.
+        Then share the updated <a id="currentURL" href="#">URL</a>
+        with your friends, and it will retain those replacements—a personalized blog post just for you!
+    </p>
+    <label for="old-word">Word for your old legacy system:</label>
+    <input type="text" id="old-word" placeholder="perl, monolith, docker swarm, syslog"><br>
+    <label for="new-word">Word for your new shiny system:</label>
+    <input type="text" id="new-word" placeholder="rust, microservices, k8s, syslog-ng"><br>
+    <button id="apply-btn" onclick="applyChanges()" style="">Replace</button>
+    <button id="reset-btn" onclick="resetChanges()" style="display: none;">Reset</button>
+</div>
+<script>
+    function resetChanges() {
+        const baseUrl = `${window.location.origin}${window.location.pathname}`;
+        window.location.href = baseUrl;
+    }
+    function getUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            oldWord: params.get('old') || '',
+            newWord: params.get('new') || '',
+        };
+    }
+    function updateUrl(oldWord, newWord) {
+        const newUrl = `${window.location.origin}${window.location.pathname}?old=${encodeURIComponent(oldWord)}&new=${encodeURIComponent(newWord)}`;
+        history.pushState(null, '', newUrl);
+        document.getElementById('currentURL').href = newUrl;
+    }
+    function replaceWordsInContent(oldWord, newWord) {
+        const placeholders = document.querySelectorAll('code');
+        placeholders.forEach((code) => {
+            if (code.textContent === 'system') code.textContent = oldWord;
+            else if (code.textContent === 'system1') code.textContent = `${oldWord}1`;
+            else if (code.textContent === 'system2') code.textContent = newWord;
+        });
+    }
+    function applyChanges() {
+        const oldWord = document.getElementById('old-word').value.trim();
+        const newWord = document.getElementById('new-word').value.trim();
+        if (!oldWord || !newWord) {
+            alert('Please enter both replacements!');
+            return;
+        }
+        replaceWordsInContent(oldWord, newWord);
+        updateUrl(oldWord, newWord);
+        document.getElementById('reset-btn').style.display = '';
+        document.getElementById('apply-btn').style.display = 'none';
+    }
+    window.onload = () => {
+        const { oldWord, newWord } = getUrlParams();
+        if (!oldWord || !newWord) {
+            return;
+        }
+        replaceWordsInContent(oldWord, newWord);
+        document.getElementById('old-word').value = oldWord;
+        document.getElementById('new-word').value = newWord;
+        document.getElementById('currentURL').href = window.location.href;
+        document.getElementById('reset-btn').style.display = '';
+        document.getElementById('apply-btn').style.display = 'none';
+    };
+</script>
+
+
+<h2 id="tldr">TL;DR:</h2>
+<p>Whenever doing a big migration from <code>system</code> to <code>system2</code>, front-load as work as possible into building migration scaffolding to <code>system2</code>.
+That way you can migrate to <code>system2</code> as seamlessly as possible, without a huge manual migration effort, one piece of functionality at a time.
+<em>Then</em> you can undo the scaffolding from <code>system</code>.
+This &ldquo;Strangler Fig Pattern&rdquo; is the key to making large migrations successful without putting the burden on your customers.</p>
+<h2 id="intro">Intro</h2>
+<p>Work long enough in tech and you will hear the analogy we&rsquo;re <a href="https://venturebeat.com/business/facebooks-platform-rebuilding-the-plane-in-midflight/" target="_blank">&ldquo;rebuilding the plane in midflight&rdquo;</a>.</p>
+<p><a href="https://www.youtube.com/watch?v=cIpBpGQ0XTI" target="_blank"><img src="/uploads/2024-12-08-howto-actually-migrate-systems/changing-tires.gif" alt="Changing Tires on a Moving Vehicle"></a></p>
+<p>It just means engineers are upgrading and replacing technology <em>while</em> keeping the lights on and users happy.
+Generally we strive for no downtime, no loss of functionality, and no data loss.</p>
+<p>And sure, it is a <a href="https://medium.com/@jpaulreed/rewriting-harmful-analogies-while-theyre-in-use-d01442c0728b" target="_blank">bad analogy</a>.
+But it helps us collectively visualize a difficult and common activity.</p>
+<p>The types of changes you might encounter could be anything from:</p>
+<ul>
+<li>standard OS upgrades</li>
+<li>library upgrades</li>
+<li>language version upgrades</li>
+<li>runtime upgrades</li>
+<li>moving to containers</li>
+<li>moving to Kubernetes</li>
+<li>moving to the &ldquo;cloud&rdquo;</li>
+<li>rewriting of your core software!</li>
+</ul>
+<p>It is a lot of change, all the time.
+Sometimes referred to as &ldquo;running to stand still&rdquo;.</p>
+<p>For this blog post I&rsquo;ll be writing about the <strong>biggest</strong> of changes, like rewrites, big migrations, or &ldquo;modernizing&rdquo; something.</p>
+<h2 id="big-migrations">Big Migrations</h2>
+<p>For the rest of this blog I&rsquo;ll reference two theoretical systems, <code>system</code> and <code>system2</code> (we never think to call the first system <code>system1</code>).</p>
+<p>Let&rsquo;s imagine what it might look like encountering a big <code>system</code> and thinking through how to modernize it.</p>
+<h2 id="step-1-shit-all-over-the-legacy-code">Step 1: Shit All Over the &ldquo;Legacy&rdquo; Code</h2>
+<p>Of course the first think you do is shit all over the code.</p>
+<blockquote>
+<p>&ldquo;It&rsquo;s spaghetti!&rdquo;</p>
+<p>&ldquo;There are not enough tests/documentation!&rdquo;</p>
+<p>&ldquo;It is in a language/framework I don&rsquo;t like!&rdquo;</p>
+<p>&ldquo;Nobody understands it, everyone who built it left!&rdquo;</p>
+</blockquote>
+<p>I&rsquo;ve heard it all.
+But you know, now that I&rsquo;m older and wiser, you will never hear me say anything like this, ever.
+It&rsquo;s all fine.
+All code can be improved, get more tests, more docs.
+The real question is: how urgent is it that we improve the codebase compared to other priorities?</p>
+<p>I never use the word &ldquo;legacy&rdquo; either.
+There is just too much negative connotation for that word.
+I always use the word &ldquo;classic&rdquo;, because it reminds me of &ldquo;classic&rdquo; cars, and feels more respectful the software right in front of us that is paying the bills.</p>
+<p>I swear the term &ldquo;legacy&rdquo; or &ldquo;deprecated&rdquo; is so overused, it might as well just mean &ldquo;code I don&rsquo;t like&rdquo; or &ldquo;code I&rsquo;m not interested in learning how it works&rdquo;.</p>
+<p>So no, don&rsquo;t shit over <em>your</em> codebase.
+Just be realistic and honest about the state that it is in, and balance the priorities that you have with the urge to just throw it all in the trash.</p>
+<p>But there are cases where is a real business justification for making significant changes to a <del>legacy</del> classic codebase.</p>
+<p>How should one actually do that?</p>
+<h2 id="step-2-be-honest-with-yourself-about-how-long-you-must-roman-ride">Step 2: Be Honest With Yourself About How Long You Must &ldquo;Roman Ride&rdquo;</h2>
+<p>Roman riding is where you stand on two horses at the same time:</p>
+<p><a href="https://www.texastrickriders.com/rodeos" target="_blank"><img src="/uploads/2024-12-08-howto-actually-migrate-systems/roman-riding.jpeg" alt="Roman Riding"></a></p>
+<p>Any non-trivial migration is going to require <em>some</em> roman riding of <code>system</code> and <code>system2</code>.</p>
+<p>In my experience, the less time, the better.</p>
+<blockquote>
+<p><strong>Migration Tenant 1</strong>: Minimize the time you roman ride at all costs.
+Do NOT underestimate the burden of roman riding.</p>
+</blockquote>
+<p>I feel like roman riding with two systems costs a team <em>more</em> than 2x.
+I feel like it is more like 4x the work due to inter-system interactions and switching overhead.</p>
+<p>Let&rsquo;s explore some other tenants as we look at some Bad Ideas.</p>
+<h2 id="bad-idea-1-hard-fork">Bad Idea 1: Hard Fork</h2>
+<p>So you&rsquo;ve decided to make a significant change to <code>system</code>.
+What if you fork the code, and do all new development on that fork, while leaving the old fork behind?</p>
+
+
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+    const lsTheme = localStorage.getItem("theme")
+    const hugoTheme = document.body.classList.contains("dark-theme") ? "dark" : null
+    const currTheme = lsTheme ? lsTheme : hugoTheme;
+    const mermaidTheme = currTheme == "light" ? "default" : "dark"
+
+    mermaid.initialize({theme: mermaidTheme});
+</script>
+
+
+
+<div class="mermaid">
+---
+title: The Hard Fork
+---
+%%{init: {'gitGraph': {'showBranches': true, 'showCommitLabel':true,'mainBranchName': 'system'}} }%%
+gitGraph
+commit id: "Feature 1"
+commit id: "Feature 2"
+branch system2
+checkout system2
+commit id: "Feature 3"
+commit id: "Feature 4"
+checkout system
+commit id: "Feature 5"
+commit id: "Feature 6"
+
+</div>
+
+<p>The big problems with this are:</p>
+<ul>
+<li>The business is not going to stop development on <code>system</code>.
+The show must go on, so you have to deal with that.</li>
+<li>This means that while you build <code>system2</code>, you have to keep up with <code>system</code>s features, twice the work!</li>
+<li>This drift is usually worse than you think.</li>
+</ul>
+<p>It is hard for us engineers to be honest with ourselves about how long we will have both <code>system</code> and <code>system2</code> when we hard fork.
+Will it be months or years?</p>
+<p>I don&rsquo;t think there are any tenets here, sometimes you gotta do this, but gosh, absolutely minimize the time you need to keep a fork.</p>
+<p><strong>Better way</strong>: Don&rsquo;t fork!
+Instead, use new files, modules, logical branches, or anything else.</p>
+<h2 id="bad-idea-2-split-teams">Bad Idea 2: Split Teams</h2>
+<p>It might be very tempting to take the <code>system</code> team and split them into two: The <code>system</code> team and the <code>system2</code> team.</p>
+
+
+<div class="mermaid">
+---
+title: The Great Team Split
+---
+graph TD
+subgraph Infrastructure Team
+direction TB
+System[System Team]
+System2[System2 Team]
+end
+
+</div>
+
+<p>The idea here is that you can have half the team work on <code>system</code>, keeping it running and maintained with features from the business, while the other half works on <code>system2</code>, bringing it to feature parity.</p>
+<p>This is a bad idea because:</p>
+<ul>
+<li>Team <code>system</code> is going to miss out on the shared <a href="https://gwern.net/doc/cs/algorithm/1985-naur.pdf" target="_blank">theory building</a> of building up <code>system2</code> and how it works</li>
+<li>Team <code>system</code> might even feel slighted.
+Why should they have to only work on the &ldquo;legacy&rdquo; codebase?</li>
+<li>Team <code>system2</code> misses out on first-hand experience with the continued changes that happen on <code>system</code>, the drift continues.</li>
+<li>Team <code>system2</code> may being to leave the ground (sometimes called &ldquo;infrastructure astronauts&rdquo;) as they are further removed from <code>system</code>.
+They don&rsquo;t have any customers (yet) to keep happy, so they might let it go to their heads and have a true <a href="https://en.wikipedia.org/wiki/Second-system_effect" target="_blank">second-system effect</a>.</li>
+</ul>
+<p><strong>Better Way</strong>: Keep the team unified because they all need to be able to maintain <code>system2</code> when it takes over.
+They also all need to stay informed with the changes <code>system</code> is also undergoing.
+Stay together, prevent an &ldquo;us vs them&rdquo; from happening, and keep all the shared knowledge distributed across all team members.</p>
+<h2 id="bad-idea-3-the-one-man-army">Bad Idea 3: The One-Man Army</h2>
+<p>Sometimes there is only one strong advocate for a change on a team.
+Maybe it is one vocal Rust proponent.
+Maybe the team thinks Vue is fine except one person on the team thinks they should move to React.
+Maybe there is just a hotshot on the team who thinks they can move the code from Python 2 to Python 3 &ldquo;in a week&rdquo; and just wants to do it.</p>
+<p>Don&rsquo;t let this happen.</p>
+<p>It is a bad idea because:</p>
+<ul>
+<li>If you let just the one person do all the work, none of the other team members will learn anything.
+They may miss out on essential knowledge about how <code>system2</code> works and won&rsquo;t be able to maintain it.</li>
+<li>The one-man may be just wrong.
+Maybe not wrong on a global level, but wrong for team.
+Rust may be a good language, but if the <em>team</em> isn&rsquo;t ready to support a Rust codebase, then they shouldn&rsquo;t rewrite.</li>
+</ul>
+<p>On the plus side, working solo can be very efficient!
+Only on the most mechanical of migrations would I advocate for this approach.
+Only when there is nothing really to be learned by doing the migration, when it is just kinda busy work.</p>
+<p><strong>Better Way</strong>: At the very least make the one person bring a junior engineer along for the ride!</p>
+<h2 id="bad-idea-4-stacking-bets">Bad Idea 4: Stacking Bets</h2>
+<p>&ldquo;Stacking Bets&rdquo; in this context means that you set up your big change (migration, rewrite, upgrade, etc.) upon another one that happens to be going on in the organization.</p>
+<p>An example might be that you might bet your upgrade your python monolith from Python 2 to Python 3 <em>will stack upon</em> an OS upgrade from Ubuntu 18.04 to Ubuntu 22.04, because you will do both together.
+Often the other change you are stacking upon is doing by some other team.</p>
+<p>On the surface it sounds fine, you might even convince yourself that you are getting something &ldquo;for free&rdquo;.
+You are not, and this stacking is a bad idea.</p>
+<p>Here is why:</p>
+<ul>
+<li>Your timelines are now coupled.
+If one team has to delay or advance the thing you are stacked upon, you may be screwed.</li>
+<li>Your coupled changes but extra burdens on <em>both</em> teams.
+The team doing the OS upgrade has to worry about breaking the team doing the Python 3 migration because they are getting it &ldquo;For Free&rdquo;.</li>
+<li>They may be showstopping issues on <em>either</em> upgrade that will hard block both.
+Now you both lose.</li>
+</ul>
+<p>I&rsquo;ve never seen this work.
+It is just plain better to architect your change such that it is independent of any other changes.</p>
+<blockquote>
+<p><strong>Migration Tenet 2</strong>: Try as hard as possible to keep all the potential blockers of your migration within your control.</p>
+</blockquote>
+<h2 id="bad-idea-5-making-your-customers-do-the-work">Bad Idea 5: Making Your Customers Do The Work</h2>
+<p>Not all migrations are simple OS upgrades.
+Sometimes you really need to build a new thing with a new API.
+<code>system2</code> is going to be new and great!</p>
+<p>How are we going to get our customers to move from <code>system</code> to <code>systems2</code>?
+Well we could write docs on how to migrate and let them move on their own time!
+Make them do the work!</p>
+<p>This is a terrible idea:</p>
+<ul>
+<li>Your customers usually have no incentive to move.
+They will drag their feet as long as possible.</li>
+<li>You will be violating the first tenet by making the time that your roman ride <code>system</code> and <code>system2</code> dependent on your customers.
+It could be centuries before you decommission <code>system</code>!</li>
+<li>While it may make the migration &ldquo;easy&rdquo; for your team, you are imposing an even larger burden on the whole org.</li>
+</ul>
+<blockquote>
+<p><strong>Migration Tenet 3</strong>: Never make your customers do any work.</p>
+</blockquote>
+<p>All the successful migrations I&rsquo;ve seen involve the same team that builds <code>system2</code> be the team that does the hard legwork of moving customers over from <code>system</code> too.</p>
+<h2 id="bad-idea-6-moving-your-biggest-customer-last">Bad Idea 6: Moving Your Biggest Customer Last</h2>
+<p>Even if you did figure out a way to build <code>system2</code> and perhaps set up some tooling to migrate customers one at a time.
+You might be tempted to move your largest and biggest customer (or whatever thing <code>system</code> processes), <em>last</em>.</p>
+<p>This is not a good idea. Even though saving your biggest customer for last seems like a good way to reduce risk, it does the <strong>opposite</strong>:</p>
+<ul>
+<li>Moving the biggest customer last to <code>system2</code> means you miss out on learning the weird ways that the biggest customer stretches <code>system</code>.
+For example, it may have the most records in a database, or the highest QPS, or the most disk space, who knows.
+If you had moved that biggest customer to <code>system2</code> <em>earlier</em>, you may have added fundamental architectural changes that are too late to do now!</li>
+<li>Your biggest customer may have been the one to benefit the most from <code>system2</code>&rsquo;s new features, but they were last in line because of the migration strategy!</li>
+<li>Because the hardest is left for last, the lifetime of <code>system</code> has become unknowable.
+Maybe you will <em>never</em> be able to migrate that biggest customer to <code>system2</code>, that would be a shame!</li>
+</ul>
+<p>Ideally your migration plan doesn&rsquo;t involve moving customers at a time, but instead moves pieces of <em>functionality</em> at a time, for <em>all</em> customers.
+But even if you must move things one customer at a time, try to front-load your biggest and most complex customer early, to ensure it is even possible to do it!
+Then it will be smooth sailing moving all the simpler customers.</p>
+<h2 id="good-idea-strangler-fig-pattern">Good Idea: &ldquo;Strangler Fig Pattern&rdquo;</h2>
+<p>Luckily, people more experienced than me have written entire books on how to migrate systems!</p>
+<p>One of my favorite and easy-to-remember patterns for this is Martin Fowler&rsquo;s <a href="https://martinfowler.com/bliki/StranglerFigApplication.html" target="_blank">&ldquo;Strangler Fig Pattern&rdquo;</a> (<em>not</em> &ldquo;Strangler Pattern&rdquo;).</p>
+<p>The Strangler Fig tree is a strange tree.
+It germinates at the top of a tree and then its roots descend, slowly enveloping the host tree:</p>
+<p><a href="https://en.wikipedia.org/wiki/Strangler_fig#/media/File:Strangler_tree.jpg" target="_blank"><img src="/uploads/2024-12-08-howto-actually-migrate-systems/strangler_fig_tree.jpeg" alt="Strangler Fig"></a></p>
+<p>If it wasn&rsquo;t obvious, the Strangler Fig tree represents <code>system2</code>, while the host tree is <code>system</code>.</p>
+<p><code>system2</code> slowly envelops <code>system</code> by finding <a href="https://martinfowler.com/bliki/LegacySeam.html" target="_blank">seams</a>, and replaces all structure, including the trunk!</p>
+<p><a href="https://en.wikipedia.org/wiki/Strangler_fig#/media/File:Corkscrew_-_bald_cypress_with_strangler_fig_inside.jpg" target="_blank"><img src="/uploads/2024-12-08-howto-actually-migrate-systems/bald_cypress_with_strangler_fig_inside.jpeg" alt="Strangler Fig Inside"></a></p>
+<p>This is how great migrations are done.
+Slow and safe, with incremental progress.
+<em>Not</em> a big bang cutover and <em>not</em> a huge rewrite.</p>
+<p>For example, if you had a monolithic application running on bare metal that you wanted to get on the hype train and be on k8s + microservices, you might first set up a proxy and carve of a single endpoint and move that one portion of an application to the new stack, while the monolith lives on.
+Use a feature toggle so that you can flip traffic on and off, gaining confidence that the new system works.
+You would <em>not</em> spend years rewriting the system and then point the whole application to it overnight.
+You also would <em>not</em> just set up a whole new website and ask your customers to update their browsing habits!</p>
+<p>It is true that there is apparent waste with the <a href="https://martinfowler.com/articles/patterns-legacy-displacement/transitional-architecture.html" target="_blank">transitional scaffolding</a> (the extra roots in this analogy) that are required to transition systems this way.
+In order to pull this off you <em>must</em> build some sort of transitional router or middleware to give yourself a space inject <code>system2</code>&rsquo;s innards into <code>system</code>.
+This scaffolding is discarded after <code>system</code> is fully decommissioned.
+I assure you that this apparent waste is well worth the reduced risk compared to other approaches.</p>
+<p>Let&rsquo;s apply these same principles apply to <code>system</code> and <code>system2</code>.
+The evolution of <code>system</code> to <code>system2</code> starts with embedding tiny new parts of <code>system2</code> inside <code>system</code>, just like the Strangler Fig.
+<code>system2</code> starts taking over different parts of the <em>functionality</em> of <code>system</code>.
+Notice that I didn&rsquo;t say <strong>customers</strong>.
+Ideally things move over one piece of <em>functionality</em> at a time, <strong>not</strong> one <em>customer</em> at a time.
+(It is fine to use eager customers to help beta test, but generally once things are going, <em>you</em> drive the migration pace.)</p>
+<p>Eventually, <code>system2</code> has kinda &ldquo;vendored&rdquo; in all the business logic from <code>system</code>, but with no architectural components of <code>system</code> are left.
+For your customers, whatever API they were using, from their perspective, hasn&rsquo;t changed.
+The <code>system2</code> API has subsumed the <code>system</code> API, or at least transmogrifies it.
+Either way, your customers don&rsquo;t mind that this migration happened.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>For infrastructure systems, I think the Strangler Fig Pattern is the only sane way to migrate from one platform to another.
+There is just too much risk to do it any other way.</p>
+<p><code>system</code> _becomes <code>system2</code> though incremental delivery and piecemeal functionality upgrades.
+It does <em>not</em> get there through a big rewrite and brute force migration.</p>
+<p>To recap some core migration tenets:</p>
+<blockquote>
+<p><strong>Tenant 1</strong>: Minimize the time you roman ride at all costs.</p>
+</blockquote>
+<blockquote>
+<p><strong>Tenant 2</strong>: Try as hard as possible to keep all the potential blockers of your migration within your control.</p>
+</blockquote>
+<blockquote>
+<p><strong>Tenant 3</strong>: Never make your customers do any work.</p>
+</blockquote>
+<p>If you follow these tenets and use the Strangler Fig Pattern, your migrations will not be <em>easier</em>, but they will be less risky and less&hellip; dreadful.
+Your engineers will thank you because they will see the light at the end of the tunnel when <code>system</code> is decommissioned instead of roman riding forever.
+Your customers will thank you for ensuring business continuity and for not making them do any work.</p>
+
+  
+  <hr>
+<div class="footer">
+    
+	    
+            <a class="previous-post" href="https://kyle.cascade.family/posts/saving-laptop-battery-by-suspending-workspaces-in-i3/?ref=footer"><span style="font-weight:bold;">« Previous</span><br>Saving Laptop Battery by Suspending Workspaces in...</a>
+        
+	    
+    
+</div>
+
+  
+  <a href="mailto:kyle@cascade.family?subject=Comment on: How%20to%20Actually%20Migrate%20Complex%20Systems%20in%20Infrastructure">Comment via email</a>
+
+</div>
+            </main>
+            
+  
+    <div class="article-toc ">
+    <div class="toc-wrapper">
+      <h4 id="contents"></h4>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#tldr">TL;DR:</a></li>
+    <li><a href="#intro">Intro</a></li>
+    <li><a href="#big-migrations">Big Migrations</a></li>
+    <li><a href="#step-1-shit-all-over-the-legacy-code">Step 1: Shit All Over the &ldquo;Legacy&rdquo; Code</a></li>
+    <li><a href="#step-2-be-honest-with-yourself-about-how-long-you-must-roman-ride">Step 2: Be Honest With Yourself About How Long You Must &ldquo;Roman Ride&rdquo;</a></li>
+    <li><a href="#bad-idea-1-hard-fork">Bad Idea 1: Hard Fork</a></li>
+    <li><a href="#bad-idea-2-split-teams">Bad Idea 2: Split Teams</a></li>
+    <li><a href="#bad-idea-3-the-one-man-army">Bad Idea 3: The One-Man Army</a></li>
+    <li><a href="#bad-idea-4-stacking-bets">Bad Idea 4: Stacking Bets</a></li>
+    <li><a href="#bad-idea-5-making-your-customers-do-the-work">Bad Idea 5: Making Your Customers Do The Work</a></li>
+    <li><a href="#bad-idea-6-moving-your-biggest-customer-last">Bad Idea 6: Moving Your Biggest Customer Last</a></li>
+    <li><a href="#good-idea-strangler-fig-pattern">Good Idea: &ldquo;Strangler Fig Pattern&rdquo;</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+  
+
+        </div>
+    </body>
+</html>
