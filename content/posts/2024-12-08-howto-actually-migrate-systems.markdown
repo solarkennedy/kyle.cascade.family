@@ -153,7 +153,7 @@ Any non-trivial migration is going to require _some_ roman riding of `system` an
 
 In my experience, the less time, the better.
 
-> **Migration Tenant 1**: Minimize the time you roman ride at all costs.
+> **Migration Tenet 1**: Minimize the time you roman ride at all costs.
 > Do NOT underestimate the burden of roman riding.
 
 I feel like roman riding with two systems costs a team _more_ than 2x.
@@ -374,11 +374,11 @@ It does _not_ get there through a big rewrite and brute force migration.
 
 To recap some core migration tenets:
 
-> **Tenant 1**: Minimize the time you roman ride at all costs.
+> **Tenet 1**: Minimize the time you roman ride at all costs.
 
-> **Tenant 2**: Try as hard as possible to keep all the potential blockers of your migration within your control.
+> **Tenet 2**: Try as hard as possible to keep all the potential blockers of your migration within your control.
 
-> **Tenant 3**: Never make your customers do any work.
+> **Tenet 3**: Never make your customers do any work.
 
 If you follow these tenets and use the Strangler Fig Pattern, your migrations will not be _easier_, but they will be less risky and less... dreadful.
 Your engineers will thank you because they will see the light at the end of the tunnel when `system` is decommissioned instead of roman riding forever.
