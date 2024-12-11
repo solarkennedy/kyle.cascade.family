@@ -159,7 +159,7 @@ In my experience, the less time, the better.
 I feel like roman riding with two systems costs a team _more_ than 2x.
 I feel like it is more like 4x the work due to inter-system interactions and switching overhead.
 
-Let's explore some other tenants as we look at some Bad Ideas.
+Let's explore some other tenets as we look at some Bad Ideas.
 
 ## Bad Idea 1: Hard Fork
 
