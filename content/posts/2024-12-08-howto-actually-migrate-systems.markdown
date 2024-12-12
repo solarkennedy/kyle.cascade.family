@@ -73,7 +73,7 @@ date: 2024-12-08
 
 ## TL;DR:
 
-Whenever doing a big migration from `system` to `system2`, front-load as work as possible into building migration scaffolding to `system2`.
+Whenever doing a big migration from `system` to `system2`, front-load as much work as possible into building migration scaffolding to `system2`.
 That way you can migrate to `system2` as seamlessly as possible, without a huge manual migration effort, one piece of functionality at a time.
 _Then_ you can undo the scaffolding from `system`.
 This "Strangler Fig Pattern" is the key to making large migrations successful without putting the burden on your customers.
